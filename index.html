@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Ceria</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="logo"><span class="logo-icon">🌈</span> Video Ceria</div>
+    <button class="btn btn-lock" id="lockBtn" title="Kunci layar (Ctrl+Shift+L)">🔒 Kunci Layar</button>
+  </header>
+
+  <main class="layout">
+    <section class="stage">
+      <div class="player" id="player">
+        <video id="video" playsinline></video>
+
+        <div class="empty" id="empty">
+          <div class="mascot">🐻</div>
+          <h2>Ayo tambah video seru!</h2>
+          <p>Klik tombol di bawah, atau seret file video ke layar ini.</p>
+          <button class="btn btn-add big" id="emptyAdd">+ Tambah Video</button>
+        </div>
+
+        <div class="now-title hidden" id="nowTitle"></div>
+      </div>
+
+      <div class="controls" id="controls">
+        <div class="seek-row">
+          <span class="time" id="curTime">0:00</span>
+          <input type="range" id="seek" class="slider seek" min="0" max="100" step="0.1" value="0" aria-label="Posisi video">
+          <span class="time" id="durTime">0:00</span>
+        </div>
+        <div class="btn-row">
+          <div class="side-group">
+            <button class="round" id="muteBtn" title="Bisukan / suarakan">🔊</button>
+            <input type="range" id="volume" class="slider vol" min="0" max="1" step="0.05" value="0.8" aria-label="Volume">
+          </div>
+          <div class="main-group">
+            <button class="round" id="prevBtn" title="Video sebelumnya">⏮️</button>
+            <button class="round play" id="playBtn" title="Putar / jeda">▶️</button>
+            <button class="round" id="nextBtn" title="Video berikutnya">⏭️</button>
+          </div>
+          <div class="side-group right">
+            <button class="btn btn-loop on" id="loopBtn" title="Ulangi playlist dari awal">🔁 Ulang Semua: Aktif</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="side-head">
+        <h3>📺 Daftar Video</h3>
+        <button class="btn btn-add" id="addBtn">+ Tambah Video</button>
+      </div>
+      <ul class="playlist" id="playlist"></ul>
+      <div class="drop-hint">⬇️ Seret file video ke sini</div>
+      <button class="btn btn-clear" id="clearBtn">🗑️ Kosongkan Daftar</button>
+    </aside>
+  </main>
+
+  <button class="unlock hidden" id="unlockBtn" title="Tahan 2 detik untuk membuka kunci">
+    <span class="unlock-fill"></span>
+    <span class="unlock-text">🔓 Tahan 2 detik untuk buka kunci</span>
+  </button>
+
+  <div class="toast" id="toast"></div>
+  <input type="file" id="fileInput" multiple accept=".mp4,.mkv,.webm,.avi,video/*" hidden>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
